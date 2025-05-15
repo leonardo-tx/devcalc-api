@@ -53,3 +53,28 @@ jobs:
 
       - name: Run tests
         run: mvn clean test
+
+  package:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'adopt'
+
+      - name: Create package
+        run: mvn clean package -DskipTests
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: package
+
+    steps:
+      - name: Deploy package
+        run: echo "Deploy realizado com sucesso"
