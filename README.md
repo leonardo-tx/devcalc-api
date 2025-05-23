@@ -26,3 +26,14 @@ um pull request para o main, sendo imprimido
 Um workflow que é executado quando há um push no main ou
 um pull request para o main em uma edição no src, sendo feito
 o checkout do projeto, o build do projeto e a execução dos testes.
+
+### Corrigindo problema de Workflow
+Como pedido no TP2, para corrigir o workflow, foi necessário ir na
+aba Actions e ir no action falho, após isso, na parte de log do
+action, é possível ver o seguinte problema:
+```
+Invalid workflow file: .github/workflows/hello.yml#L12
+The workflow is not valid. .github/workflows/hello.yml (Line: 12, Col: 3): The identifier 'hello@#' is invalid. IDs may only contain alphanumeric characters, '_', and '-'. IDs must start with a letter or '_' and and must be less than 100 characters.
+```
+
+Com o erro acima, é só resolver o nome inválido do job em hello.yml.
