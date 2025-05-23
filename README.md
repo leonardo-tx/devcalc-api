@@ -1,4 +1,6 @@
 # DevCalc API
+![Dev Calc API CI](https://github.com/leonardo-tx/devcalc-api/actions/workflows/ci.yml/badge.svg)
+
 Esse projeto tem como proposta calcular números, expondo endpoints para
 subtrair, adicionar, multiplicar e dividir.
 
