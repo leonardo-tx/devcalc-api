@@ -12,11 +12,22 @@ on:
     paths:
       - 'src/**'
   workflow_dispatch:
+    inputs:
+      run_tests:
+        type: boolean
+        required: false
+        default: true
+        description: Indicates whether the workflow should run the tests.
+      run_lint:
+        type: boolean
+        required: false
+        default: true
+        description: Indicates whether the workflow should run the code style analyser.
 
 jobs:
   checkout:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -41,6 +52,9 @@ jobs:
   test:
     needs: build
     uses: ./.github/workflows/lint-and-test.yml
+    with:
+      run_tests: ${{ inputs.run_tests }}
+      run_lint: ${{ inputs.run_lint }}
 
   package:
     runs-on: ubuntu-latest

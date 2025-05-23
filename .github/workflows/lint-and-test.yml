@@ -1,9 +1,18 @@
 name: Lint and Test
 on:
   workflow_call:
-
+    inputs:
+      run_tests:
+        type: boolean
+        required: true
+        description: Indicates whether the workflow should run the tests.
+      run_lint:
+        type: boolean
+        required: true
+        description: Indicates whether the workflow should run the code style analyser.
 jobs:
   lint:
+    if: ${{ inputs.run_lint }}
     runs-on: ubuntu-latest
 
     steps:
@@ -20,8 +29,8 @@ jobs:
         run: mvn clean checkstyle:check
 
   test:
+    if: ${{ inputs.run_tests }}
     runs-on: ubuntu-latest
-    needs: lint
 
     steps:
       - name: Checkout code
