@@ -1,0 +1,26 @@
+name: Self Hosted CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-self-hosted:
+    runs-on: self-hosted
+
+    steps:
+      - name: Show System Info
+        run: |
+          echo ----- System Info -----
+          uname -a
+      - name: Show Java Version
+        run: |
+          echo ----- Java Version -----
+          java --version
+      - name: Install Nouveau Vulkan Driver
+        run: |
+          echo ----- Install NVK -----
+          sudo pacman -S vulkan-nouveau --noconfirm
+      - name: Uninstall Nouveau Vulkan Driver
+        run: |
+          echo ----- Uninstall NVK -----
+          sudo pacman -R vulkan-nouveau --noconfirm
