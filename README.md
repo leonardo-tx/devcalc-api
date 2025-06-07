@@ -50,4 +50,38 @@ enquanto no manual é possível escolher qual executar, alternando entre falso
 ou verdadeiro.
 
 ## TP3
+Todas as explicações se encontram no PDF do trabalho. Aqui será colocado trechos do PDF.
 
+### Configuração de Runner Auto-Hospedado
+Para o runner auto hospedado, foi utilizado meu sistema Linux pessoal que usa o Arch
+Linux. Sendo executado comandos para mostrar informações do sistema, e a versão do
+Java, além da instalação e remoção de um driver vulkan do projeto open-source Mesa,
+que é o NVK (Nouveau Vulkan Driver), que é para placas de vídeo NVIDIA.
+O arquivo de workflow criado para esse caso é o self-hosted.yml
+
+### Uso de Variáveis e Secrets no Workflow
+O arquivo de workflow criado para esse caso é o variable-secret.yml. Usa variáveis e secrets
+configurados na seção de actions.
+
+### Contextos e Escopos de Variáveis de Ambiente
+Nesse exercício foi testado sobrescritas e escopos diferentes de variável de ambiente, o
+nome do arquivo é o mesmo pedido pelo trabalho. (env-context-demo.yml)
+
+### Controle de Permissões e Uso do GITHUB_TOKEN
+Para criar a issue, foi utilizado uma action do github action reutilizável chamada de
+JasonEtco/create-an-issue@v2, o GITHUB_TOKEN é colocado ao action utilizando o env
+para passar o mesmo como uma variável de ambiente para o action criar a issue.
+
+Para obter esse GITHUB_TOKEN, é necessário usar o secrets.GITHUB_TOKEN
+
+O workflow criado se encontra no arquivo issue.yml, onde há um job chamado de
+important que força um erro e um job nomeado de failure, que aciona quando o job
+important falha, criando a issue.
+
+### Ambientes de Deploy para Dev e Prod
+Cria ambientes de dev e prod nas configurações de repositório. Modifica o arquivo ci.yml
+para acionar o deploy dev em um push no branch dev e o deploy prod em um push no branch main.
+
+### Implementação e Integração de Nova Funcionalidade na API
+As funcionalidades e testes foram feitos em um pull request separado, no PDF estão os
+testes executados e o uso do endpoint no Postman.
