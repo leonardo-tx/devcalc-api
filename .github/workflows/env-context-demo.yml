@@ -1,0 +1,72 @@
+name: Environment Context Demo CI
+
+on:
+  workflow_dispatch:
+
+env:
+  WORKFLOW_ENV_VAR: "Global Variable"
+
+jobs:
+  show-context-1:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV_VAR_1: "JOB_VARIABLE"
+
+    steps:
+      - name: Show actor and host contexts
+        run: |
+          echo "Actor: ${{ github.actor }}"
+          echo "Host: ${{ runner.os }}"
+      - name: Show context 1
+        env:
+          CONTEXT_1: "Apple"
+        run: |
+          echo "Should show CONTEXT_1: $CONTEXT_1"
+          echo "Should not show CONTEXT_2: $CONTEXT_2"
+          echo "Should not show CONTEXT_3: $CONTEXT_3"
+          echo "Should not show CONTEXT_4: $CONTEXT_4"
+          echo "Should show JOB_ENV_VAR_1: $JOB_ENV_VAR_1"
+          echo "Should not show JOB_ENV_VAR_2: $JOB_ENV_VAR_2"
+          echo "Should show WORKFLOW_ENV_VAR: $WORKFLOW_ENV_VAR"
+
+      - name: Show context 2
+        env:
+          CONTEXT_2: "Orange"
+        run : |
+          echo "Should not show CONTEXT_1: $CONTEXT_1"
+          echo "Should show CONTEXT_2: $CONTEXT_2"
+          echo "Should not show CONTEXT_3: $CONTEXT_3"
+          echo "Should not show CONTEXT_4: $CONTEXT_4"
+          echo "Should show JOB_ENV_VAR_1: $JOB_ENV_VAR_1"
+          echo "Should not show JOB_ENV_VAR_2: $JOB_ENV_VAR_2"
+          echo "Should show WORKFLOW_ENV_VAR: $WORKFLOW_ENV_VAR"
+
+  show-context-2:
+    runs-on: ubuntu-latest
+    env:
+      JOB_ENV_VAR_2: "JOB_VARIABLE 2"
+
+    steps:
+      - name: Show context 3
+        env:
+          CONTEXT_3: "Melon"
+        run: |
+          echo "Should not show CONTEXT_1: $CONTEXT_1"
+          echo "Should not show CONTEXT_2: $CONTEXT_2"
+          echo "Should show CONTEXT_3: $CONTEXT_3"
+          echo "Should not show CONTEXT_4: $CONTEXT_4"
+          echo "Should not show JOB_ENV_VAR_1: $JOB_ENV_VAR_1"
+          echo "Should show JOB_ENV_VAR_2: $JOB_ENV_VAR_2"
+          echo "Should show WORKFLOW_ENV_VAR: $WORKFLOW_ENV_VAR"
+
+      - name: Show context 4
+        env:
+          CONTEXT_4: "Grape"
+        run: |
+          echo "Should not show CONTEXT_1: $CONTEXT_1"
+          echo "Should not show CONTEXT_2: $CONTEXT_2"
+          echo "Should not show CONTEXT_3: $CONTEXT_3"
+          echo "Should show CONTEXT_4: $CONTEXT_4"
+          echo "Should not show JOB_ENV_VAR_1: $JOB_ENV_VAR_1"
+          echo "Should show JOB_ENV_VAR_2: $JOB_ENV_VAR_2"
+          echo "Should show WORKFLOW_ENV_VAR: $WORKFLOW_ENV_VAR"
