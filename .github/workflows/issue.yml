@@ -1,0 +1,49 @@
+name: Create issue on error
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  important:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Important Job
+        run: |
+          exit 1 # Trigger an error
+
+  failure:
+    runs-on: ubuntu-latest
+    needs: important
+    if: failure()
+
+    steps:
+      - name: Generate Issue Markdown
+        run: |
+          cat <<EOF > issue.md
+          ---
+          title: Workflow falho {{ date | date('dddd, MMMM Do') }}
+          labels: bug
+          ---
+          ## Workflow falhou
+            
+            Um workflow falhou, o que levou a geração desse
+            issue em específico.
+          
+          ### CI falho
+          - Workflow: ${{ github.workflow }}
+          - Job: ${{ github.job }}
+          - Commit: ${{ github.sha }}
+            
+            Observe o log do workflow em questão para descobrir
+            a causa do problema.
+          EOF
+
+      - name: Create issue on failure
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: issue.md
