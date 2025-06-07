@@ -35,6 +35,11 @@ public class CalculatorServiceTest {
         assertEquals(2, calculatorService.divide(10, 5));
     }
 
+    @Example
+    public void testSquareRoot16() {
+        assertEquals(4, calculatorService.sqrt(16));
+    }
+
     @Property
     public void addRandomInputs(@ForAll double a, @ForAll double b) {
         assertEquals(a + b, calculatorService.add(a, b));
@@ -53,5 +58,10 @@ public class CalculatorServiceTest {
     @Property
     public void divideRandomInputs(@ForAll double a, @ForAll double b) {
         assertEquals(a / b, calculatorService.divide(a, b));
+    }
+
+    @Property
+    public void squareRootRandomInputs(@ForAll double x) {
+        assertEquals(Math.sqrt(x), calculatorService.sqrt(x));
     }
 }

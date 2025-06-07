@@ -19,4 +19,8 @@ public final class CalculatorService {
     public double divide(double a, double b) {
         return a / b;
     }
+
+    public double sqrt(double x) {
+        return Math.sqrt(x);
+    }
 }
