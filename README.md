@@ -1,6 +1,8 @@
 # DevCalc API
 ![Dev Calc API CI](https://github.com/leonardo-tx/devcalc-api/actions/workflows/ci.yml/badge.svg)
 
+## TP1
+
 Esse projeto tem como proposta calcular números, expondo endpoints para
 subtrair, adicionar, multiplicar e dividir.
 
@@ -29,6 +31,8 @@ Um workflow que é executado quando há um push no main ou
 um pull request para o main em uma edição no src, sendo feito
 o checkout do projeto, o build do projeto e a execução dos testes.
 
+## TP2
+
 ### Corrigindo problema de Workflow
 Como pedido no TP2, para corrigir o workflow, foi necessário ir na
 aba Actions e ir no action falho, após isso, na parte de log do
@@ -44,4 +48,6 @@ Os dois modos desempenham funções semelhantes, entretanto no automático,
 o valor dos inputs para a action de lint-and-test.yml sempre é verdadeiro,
 enquanto no manual é possível escolher qual executar, alternando entre falso
 ou verdadeiro.
+
+## TP3
 

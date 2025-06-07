@@ -20,6 +20,7 @@ jobs:
       - name: Show context 1
         env:
           CONTEXT_1: "Apple"
+          JOB_ENV_VAR_1: "MODIFIED JOB VAR"
         run: |
           echo "Should show CONTEXT_1: $CONTEXT_1"
           echo "Should not show CONTEXT_2: $CONTEXT_2"
@@ -45,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       JOB_ENV_VAR_2: "JOB_VARIABLE 2"
+      WORKFLOW_ENV_VAR: "MODIFIED WORKFLOW VAR"
 
     steps:
       - name: Show context 3
